@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QJsonArray>
 #include <iostream>
 #include <fstream>
 #include "base64.cpp"
@@ -18,6 +19,7 @@ static std::string image_id = "Not Available";
 static int status_code = 000;
 static std::string delimiter = "://";
 static std::string host_name = BASE_PREFIX.substr(BASE_PREFIX.find(delimiter)+3, BASE_PREFIX.length());
+static bool token_validation = false;
 
 class url_prefixes{
 public:
@@ -30,8 +32,7 @@ public:
 
 static url_prefixes urls;
 
-MainWindow::MainWindow(QWidget *parent):QMainWindow(parent),
-    ui(new Ui::MainWindow)
+MainWindow::MainWindow(QWidget *parent):QMainWindow(parent),ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
     url_prefixes urls;
@@ -62,6 +63,7 @@ MainWindow::MainWindow(QWidget *parent):QMainWindow(parent),
         }
         reply->deleteLater();
     });
+    ui->getimgButton->setDisabled(false);
 }
 
 
@@ -99,12 +101,15 @@ void MainWindow::on_selectButton_clicked()
             image = image.scaledToWidth(ui->imgHolder->width(), Qt::SmoothTransformation);
             ui->imgHolder->setPixmap(QPixmap::fromImage(image));
             ui->imgName->setText(filename);
+            ui->getimgButton->setDisabled(true);
+            validatetoken();
         }
     }
 }
 
-void MainWindow::on_validateButton_clicked()
+void MainWindow::validatetoken()
 {
+    token_validation = false;
     srand(time(NULL));
     // Getting upload permissions
     image_id = ran_string(TOKLEN_IMGID);
@@ -137,9 +142,16 @@ void MainWindow::on_validateButton_clicked()
             ui->statusCode->setNum(status_code);
             ui->sessidLabel->setText(QString::fromStdString(session_id));
             ui->imgidLabel->setText(QString::fromStdString(image_id));
-            QString contents = QString::fromUtf8(reply->readAll());
-            qDebug() << contents;
-            qDebug() << "Permission granted\n";
+            QByteArray contents = QByteArray(reply->readAll());
+            if (status_code==200){
+                QJsonDocument doc(QJsonDocument::fromJson(contents));
+                QJsonObject json = doc.object();
+                if (json["status"].toString()!="ok"){
+                    return;
+                }
+                token_validation = true;
+                uploadimg();
+            }
         }
         else{
             QString err = reply->errorString();
@@ -149,10 +161,10 @@ void MainWindow::on_validateButton_clicked()
         }
         reply->deleteLater();
     });
-
+    ui->tokenvLabel->setNum(token_validation);
 }
 
-void MainWindow::on_uploadButton_clicked()
+void MainWindow::uploadimg()
 {
     QString filename = ui->imgName->text();
     QFile file(filename);
@@ -185,9 +197,12 @@ void MainWindow::on_uploadButton_clicked()
     QObject::connect(reply, &QNetworkReply::finished, [=](){
         if(reply->error() == QNetworkReply::NoError){
             status_code = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
-            QString contents = QString::fromUtf8(reply->readAll());
-            qDebug() << contents;
-            qDebug() << status_code;
+            if(status_code==200 and token_validation){
+                ui->getimgButton->setDisabled(false);
+            }
+            else {
+                return;
+            }
         }
         else{
             QString err = reply->errorString();

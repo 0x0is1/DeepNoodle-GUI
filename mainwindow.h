@@ -18,9 +18,9 @@ public:
 
 private slots:
     void on_selectButton_clicked();
-    void on_validateButton_clicked();
+    void validatetoken();
 
-    void on_uploadButton_clicked();
+    void uploadimg();
 
     void on_getimgButton_clicked();
 

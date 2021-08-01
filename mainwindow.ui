@@ -70,24 +70,6 @@
      <string>&lt;center&gt;No image selected&lt;/center&gt;</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="validateButton">
-    <property name="geometry">
-     <rect>
-      <x>620</x>
-      <y>310</y>
-      <width>131</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>15</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>Legalise token</string>
-    </property>
-   </widget>
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
@@ -109,7 +91,7 @@
    <widget class="QLabel" name="statusCode">
     <property name="geometry">
      <rect>
-      <x>570</x>
+      <x>610</x>
       <y>90</y>
       <width>101</width>
       <height>21</height>
@@ -127,7 +109,7 @@
    <widget class="QLabel" name="imgidLabel">
     <property name="geometry">
      <rect>
-      <x>570</x>
+      <x>610</x>
       <y>140</y>
       <width>281</width>
       <height>21</height>
@@ -181,45 +163,9 @@
    <widget class="QLabel" name="sessidLabel">
     <property name="geometry">
      <rect>
-      <x>570</x>
+      <x>610</x>
       <y>180</y>
       <width>281</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>15</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>Not Available</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_7">
-    <property name="geometry">
-     <rect>
-      <x>470</x>
-      <y>220</y>
-      <width>101</width>
-      <height>18</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>15</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>Image ID:</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_8">
-    <property name="geometry">
-     <rect>
-      <x>570</x>
-      <y>220</y>
-      <width>101</width>
       <height>21</height>
      </rect>
     </property>
@@ -235,8 +181,8 @@
    <widget class="QPushButton" name="getimgButton">
     <property name="geometry">
      <rect>
-      <x>620</x>
-      <y>430</y>
+      <x>500</x>
+      <y>490</y>
       <width>131</width>
       <height>41</height>
      </rect>
@@ -250,13 +196,13 @@
      <string>Get image</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="uploadButton">
+   <widget class="QLabel" name="tokenvLabel">
     <property name="geometry">
      <rect>
-      <x>620</x>
-      <y>370</y>
-      <width>131</width>
-      <height>41</height>
+      <x>610</x>
+      <y>220</y>
+      <width>281</width>
+      <height>21</height>
      </rect>
     </property>
     <property name="font">
@@ -265,7 +211,25 @@
      </font>
     </property>
     <property name="text">
-     <string>Upload</string>
+     <string>False</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_6">
+    <property name="geometry">
+     <rect>
+      <x>470</x>
+      <y>220</y>
+      <width>121</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Token Validity:</string>
     </property>
    </widget>
   </widget>
