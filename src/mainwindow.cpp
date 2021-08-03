@@ -8,6 +8,7 @@
 #include "base64.cpp"
 #include <QTimer>
 #include <QThread>
+#include <QImage>
 
 using namespace std;
 
@@ -93,7 +94,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_selectButton_clicked()
 {
-    QString filename = QFileDialog::getOpenFileName(this, tr("choose"), "", tr("Images (*.png, *.jpg, *.jpeg)"));
+    QString filename = QFileDialog::getOpenFileName(this, tr("Choose file"), "", tr("*.jpg"));
     if (QString::compare(filename, QString()) != 0){
         QImage image;
         bool valid_img = image.load(filename);
@@ -256,4 +257,14 @@ void MainWindow::on_getimgButton_clicked()
         reply->deleteLater();
     });
 
+}
+
+void MainWindow::on_saveimgButton_clicked()
+{
+    QString filename = QFileDialog::getSaveFileName(this, tr("Save as"), "", tr("Images (*.png, *.jpg, *.jpeg)"));
+    const QPixmap* pixmap = ui->imgHolder->pixmap();
+    if (pixmap){
+        QImage image = pixmap->toImage();
+        image.save(filename);
+    }
 }

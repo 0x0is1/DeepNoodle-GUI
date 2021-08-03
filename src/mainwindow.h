@@ -18,11 +18,14 @@ public:
 
 private slots:
     void on_selectButton_clicked();
+
     void validatetoken();
 
     void uploadimg();
 
     void on_getimgButton_clicked();
+
+    void on_saveimgButton_clicked();
 
 private:
     Ui::MainWindow *ui;
