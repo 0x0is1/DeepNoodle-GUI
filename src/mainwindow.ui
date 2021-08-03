@@ -27,17 +27,17 @@
      <string notr="true">background-color:grey;</string>
     </property>
     <property name="text">
-     <string>&lt;center&gt;No image selected&lt;/center&gt;
+     <string>&lt;center&gt;No preview available&lt;/center&gt;
 </string>
     </property>
    </widget>
    <widget class="QPushButton" name="selectButton">
     <property name="geometry">
      <rect>
-      <x>30</x>
+      <x>280</x>
       <y>460</y>
-      <width>80</width>
-      <height>26</height>
+      <width>91</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="font">
@@ -52,9 +52,9 @@
    <widget class="QLabel" name="imgName">
     <property name="geometry">
      <rect>
-      <x>150</x>
+      <x>30</x>
       <y>460</y>
-      <width>251</width>
+      <width>241</width>
       <height>31</height>
      </rect>
     </property>
@@ -73,8 +73,8 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>470</x>
-      <y>90</y>
+      <x>450</x>
+      <y>100</y>
       <width>101</width>
       <height>18</height>
      </rect>
@@ -91,10 +91,10 @@
    <widget class="QLabel" name="statusCode">
     <property name="geometry">
      <rect>
-      <x>610</x>
+      <x>570</x>
       <y>90</y>
-      <width>101</width>
-      <height>21</height>
+      <width>241</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="font">
@@ -109,10 +109,10 @@
    <widget class="QLabel" name="imgidLabel">
     <property name="geometry">
      <rect>
-      <x>610</x>
+      <x>560</x>
       <y>140</y>
       <width>281</width>
-      <height>21</height>
+      <height>41</height>
      </rect>
     </property>
     <property name="font">
@@ -121,16 +121,16 @@
      </font>
     </property>
     <property name="text">
-     <string>Not Available</string>
+     <string>&lt;center&gt; Not Available &lt;/center&gt;</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
-      <x>470</x>
-      <y>140</y>
+      <x>450</x>
+      <y>150</y>
       <width>101</width>
-      <height>18</height>
+      <height>31</height>
      </rect>
     </property>
     <property name="font">
@@ -145,8 +145,8 @@
    <widget class="QLabel" name="label_5">
     <property name="geometry">
      <rect>
-      <x>470</x>
-      <y>180</y>
+      <x>450</x>
+      <y>210</y>
       <width>101</width>
       <height>18</height>
      </rect>
@@ -163,10 +163,10 @@
    <widget class="QLabel" name="sessidLabel">
     <property name="geometry">
      <rect>
-      <x>610</x>
-      <y>180</y>
+      <x>560</x>
+      <y>210</y>
       <width>281</width>
-      <height>21</height>
+      <height>31</height>
      </rect>
     </property>
     <property name="font">
@@ -175,14 +175,14 @@
      </font>
     </property>
     <property name="text">
-     <string>Not Available</string>
+     <string>&lt;center&gt;Not Available&lt;/center&gt;</string>
     </property>
    </widget>
    <widget class="QPushButton" name="getimgButton">
     <property name="geometry">
      <rect>
-      <x>500</x>
-      <y>490</y>
+      <x>460</x>
+      <y>400</y>
       <width>131</width>
       <height>41</height>
      </rect>
@@ -199,10 +199,10 @@
    <widget class="QLabel" name="tokenvLabel">
     <property name="geometry">
      <rect>
-      <x>610</x>
-      <y>220</y>
+      <x>560</x>
+      <y>260</y>
       <width>281</width>
-      <height>21</height>
+      <height>31</height>
      </rect>
     </property>
     <property name="font">
@@ -211,14 +211,14 @@
      </font>
     </property>
     <property name="text">
-     <string>False</string>
+     <string>&lt;center&gt;False&lt;/center&gt;</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_6">
     <property name="geometry">
      <rect>
-      <x>470</x>
-      <y>220</y>
+      <x>450</x>
+      <y>260</y>
       <width>121</width>
       <height>20</height>
      </rect>
@@ -232,24 +232,24 @@
      <string>Token Validity:</string>
     </property>
    </widget>
-  </widget>
-  <widget class="QMenuBar" name="menuBar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>1011</width>
-     <height>23</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QToolBar" name="mainToolBar">
-   <attribute name="toolBarArea">
-    <enum>TopToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak">
-    <bool>false</bool>
-   </attribute>
+   <widget class="QPushButton" name="saveimgButton">
+    <property name="geometry">
+     <rect>
+      <x>690</x>
+      <y>400</y>
+      <width>131</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Save image</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
  </widget>
