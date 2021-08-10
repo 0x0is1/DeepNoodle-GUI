@@ -37,6 +37,7 @@ MainWindow::MainWindow(QWidget *parent):QMainWindow(parent),ui(new Ui::MainWindo
 {
     ui->setupUi(this);
     url_prefixes urls;
+    ui->saveimgButton->setDisabled(true);
     QNetworkAccessManager *mgr = new QNetworkAccessManager(this);
 
     const QUrl url(QString::fromStdString(BASE_PREFIX));
@@ -49,7 +50,7 @@ MainWindow::MainWindow(QWidget *parent):QMainWindow(parent),ui(new Ui::MainWindo
     request.setRawHeader("Connection", "Keep-Alive");
 
     QNetworkReply *reply = mgr->get(request);
-
+    ui->getimgButton->setDisabled(true);
     QObject::connect(reply, &QNetworkReply::finished, [=](){
         if(reply->error() == QNetworkReply::NoError){
             status_code = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
@@ -218,8 +219,13 @@ void MainWindow::uploadimg()
 
 void MainWindow::on_getimgButton_clicked()
 {
-    qDebug() << "Sleep 20";
-    QThread::sleep(20);
+    //qDebug() << "Sleep 20";
+    for(int i=0; i<=20; i++){
+        qDebug() << i;
+        ui->getimgButton->setText(QString(i));
+        QThread::sleep(1);
+    }
+    ui->getimgButton->setText("Get image");
 
     QNetworkAccessManager *mgr = new QNetworkAccessManager(this);
     const QUrl url(QString::fromStdString(BASE_PREFIX + urls.get_im_prefix + image_id + urls.get_im_suffix));
@@ -245,6 +251,7 @@ void MainWindow::on_getimgButton_clicked()
             if (valid_img){
                 image = image.scaledToWidth(ui->imgHolder->width(), Qt::SmoothTransformation);
                 ui->imgHolder->setPixmap(QPixmap::fromImage(image));
+                ui->getimgButton->setEnabled(true);
             }
             qDebug() << status_code;
         }

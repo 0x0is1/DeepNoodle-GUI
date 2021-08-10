@@ -17,8 +17,8 @@
    <widget class="QLabel" name="imgHolder">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>70</y>
+      <x>20</x>
+      <y>120</y>
       <width>371</width>
       <height>381</height>
      </rect>
@@ -27,15 +27,18 @@
      <string notr="true">background-color:grey;</string>
     </property>
     <property name="text">
-     <string>&lt;center&gt;No preview available&lt;/center&gt;
+     <string>No preview available
 </string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QPushButton" name="selectButton">
     <property name="geometry">
      <rect>
-      <x>280</x>
-      <y>460</y>
+      <x>290</x>
+      <y>530</y>
       <width>91</width>
       <height>31</height>
      </rect>
@@ -52,9 +55,9 @@
    <widget class="QLabel" name="imgName">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>460</y>
-      <width>241</width>
+      <x>40</x>
+      <y>530</y>
+      <width>251</width>
       <height>31</height>
      </rect>
     </property>
@@ -67,16 +70,19 @@
      <string notr="true"/>
     </property>
     <property name="text">
-     <string>&lt;center&gt;No image selected&lt;/center&gt;</string>
+     <string>No image selected</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>450</x>
-      <y>100</y>
-      <width>101</width>
-      <height>18</height>
+      <x>440</x>
+      <y>140</y>
+      <width>121</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="font">
@@ -91,9 +97,9 @@
    <widget class="QLabel" name="statusCode">
     <property name="geometry">
      <rect>
-      <x>570</x>
-      <y>90</y>
-      <width>241</width>
+      <x>560</x>
+      <y>140</y>
+      <width>271</width>
       <height>31</height>
      </rect>
     </property>
@@ -103,16 +109,19 @@
      </font>
     </property>
     <property name="text">
-     <string>&lt;center&gt;404&lt;/center&gt;</string>
+     <string>404</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QLabel" name="imgidLabel">
     <property name="geometry">
      <rect>
       <x>560</x>
-      <y>140</y>
-      <width>281</width>
-      <height>41</height>
+      <y>200</y>
+      <width>271</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="font">
@@ -121,15 +130,18 @@
      </font>
     </property>
     <property name="text">
-     <string>&lt;center&gt; Not Available &lt;/center&gt;</string>
+     <string>Not Available</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
-      <x>450</x>
-      <y>150</y>
-      <width>101</width>
+      <x>440</x>
+      <y>200</y>
+      <width>121</width>
       <height>31</height>
      </rect>
     </property>
@@ -145,10 +157,10 @@
    <widget class="QLabel" name="label_5">
     <property name="geometry">
      <rect>
-      <x>450</x>
-      <y>210</y>
-      <width>101</width>
-      <height>18</height>
+      <x>440</x>
+      <y>260</y>
+      <width>121</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="font">
@@ -164,8 +176,8 @@
     <property name="geometry">
      <rect>
       <x>560</x>
-      <y>210</y>
-      <width>281</width>
+      <y>260</y>
+      <width>271</width>
       <height>31</height>
      </rect>
     </property>
@@ -175,14 +187,17 @@
      </font>
     </property>
     <property name="text">
-     <string>&lt;center&gt;Not Available&lt;/center&gt;</string>
+     <string>Not Available</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QPushButton" name="getimgButton">
     <property name="geometry">
      <rect>
-      <x>460</x>
-      <y>400</y>
+      <x>480</x>
+      <y>530</y>
       <width>131</width>
       <height>41</height>
      </rect>
@@ -200,8 +215,8 @@
     <property name="geometry">
      <rect>
       <x>560</x>
-      <y>260</y>
-      <width>281</width>
+      <y>320</y>
+      <width>271</width>
       <height>31</height>
      </rect>
     </property>
@@ -211,16 +226,19 @@
      </font>
     </property>
     <property name="text">
-     <string>&lt;center&gt;False&lt;/center&gt;</string>
+     <string>False</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QLabel" name="label_6">
     <property name="geometry">
      <rect>
-      <x>450</x>
-      <y>260</y>
+      <x>440</x>
+      <y>320</y>
       <width>121</width>
-      <height>20</height>
+      <height>31</height>
      </rect>
     </property>
     <property name="font">
@@ -235,8 +253,8 @@
    <widget class="QPushButton" name="saveimgButton">
     <property name="geometry">
      <rect>
-      <x>690</x>
-      <y>400</y>
+      <x>710</x>
+      <y>530</y>
       <width>131</width>
       <height>41</height>
      </rect>
@@ -248,6 +266,58 @@
     </property>
     <property name="text">
      <string>Save image</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="heading">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>20</y>
+      <width>621</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>30</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+      <underline>true</underline>
+     </font>
+    </property>
+    <property name="acceptDrops">
+     <bool>false</bool>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="text">
+     <string>DEEPNOODLE 2.0</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="headicon">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>20</y>
+      <width>101</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>../res/icon.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
   </widget>
