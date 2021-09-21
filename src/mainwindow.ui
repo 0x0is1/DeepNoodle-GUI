@@ -99,7 +99,7 @@
      <rect>
       <x>560</x>
       <y>140</y>
-      <width>271</width>
+      <width>371</width>
       <height>31</height>
      </rect>
     </property>
@@ -120,7 +120,7 @@
      <rect>
       <x>560</x>
       <y>200</y>
-      <width>271</width>
+      <width>401</width>
       <height>31</height>
      </rect>
     </property>
@@ -177,7 +177,7 @@
      <rect>
       <x>560</x>
       <y>260</y>
-      <width>271</width>
+      <width>401</width>
       <height>31</height>
      </rect>
     </property>
@@ -216,7 +216,7 @@
      <rect>
       <x>560</x>
       <y>320</y>
-      <width>271</width>
+      <width>381</width>
       <height>31</height>
      </rect>
     </property>
@@ -292,29 +292,49 @@
      <bool>true</bool>
     </property>
     <property name="text">
-     <string>DEEPNOODLE 2.0</string>
+     <string>DEEPNOODLE</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="headicon">
+   <widget class="QLabel" name="uploadLabel">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>20</y>
-      <width>101</width>
-      <height>71</height>
+      <x>560</x>
+      <y>380</y>
+      <width>381</width>
+      <height>31</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+     </font>
+    </property>
     <property name="text">
-     <string/>
+     <string>None</string>
     </property>
-    <property name="pixmap">
-     <pixmap>../res/icon.png</pixmap>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
-    <property name="scaledContents">
-     <bool>true</bool>
+   </widget>
+   <widget class="QLabel" name="label_7">
+    <property name="geometry">
+     <rect>
+      <x>440</x>
+      <y>380</y>
+      <width>121</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Status:</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>

@@ -9,6 +9,7 @@
 #include <QTimer>
 #include <QThread>
 #include <QImage>
+#include <QMessageBox>
 
 using namespace std;
 
@@ -37,7 +38,6 @@ MainWindow::MainWindow(QWidget *parent):QMainWindow(parent),ui(new Ui::MainWindo
 {
     ui->setupUi(this);
     url_prefixes urls;
-    ui->saveimgButton->setDisabled(true);
     QNetworkAccessManager *mgr = new QNetworkAccessManager(this);
 
     const QUrl url(QString::fromStdString(BASE_PREFIX));
@@ -50,7 +50,10 @@ MainWindow::MainWindow(QWidget *parent):QMainWindow(parent),ui(new Ui::MainWindo
     request.setRawHeader("Connection", "Keep-Alive");
 
     QNetworkReply *reply = mgr->get(request);
-    ui->getimgButton->setDisabled(true);
+    ui->getimgButton->setHidden(true);
+    ui->label_7->setHidden(true);
+    ui->uploadLabel->setHidden(true);
+    ui->saveimgButton->setHidden(true);
     QObject::connect(reply, &QNetworkReply::finished, [=](){
         if(reply->error() == QNetworkReply::NoError){
             status_code = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
@@ -61,7 +64,14 @@ MainWindow::MainWindow(QWidget *parent):QMainWindow(parent),ui(new Ui::MainWindo
         }
         else{
             QString err = reply->errorString();
-            qDebug() << err;
+            if (err=="Host deepnude.to not found"){
+                QMessageBox::warning(this, "Internet connection lost.", "Please check your connection and retry.");
+                exit(0);
+            }
+            else if (err=="Socket operation timed out") {
+                QMessageBox::warning(this, "Timeout", "Server might be banned in your country, use VPN to access.");
+                exit(0);
+            }
         }
         reply->deleteLater();
     });
@@ -95,6 +105,10 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_selectButton_clicked()
 {
+    ui->getimgButton->setHidden(true);
+    ui->label_7->setHidden(true);
+    ui->uploadLabel->setHidden(true);
+    ui->saveimgButton->setHidden(true);
     QString filename = QFileDialog::getOpenFileName(this, tr("Choose file"), "", tr("*.jpg"));
     if (QString::compare(filename, QString()) != 0){
         QImage image;
@@ -103,7 +117,7 @@ void MainWindow::on_selectButton_clicked()
             image = image.scaledToWidth(ui->imgHolder->width(), Qt::SmoothTransformation);
             ui->imgHolder->setPixmap(QPixmap::fromImage(image));
             ui->imgName->setText(filename);
-            ui->getimgButton->setDisabled(true);
+            ui->selectButton->setDisabled(true);
             validatetoken();
         }
     }
@@ -136,6 +150,9 @@ void MainWindow::validatetoken()
     request.setRawHeader("TE", "Trailers");
 
     QByteArray data = "";
+    ui->label_7->setHidden(false);
+    ui->uploadLabel->setHidden(false);
+    ui->uploadLabel->setText("Validating token...");
     QNetworkReply *reply = mgr->post(request, data);
 
     QObject::connect(reply, &QNetworkReply::finished, [=](){
@@ -159,11 +176,23 @@ void MainWindow::validatetoken()
             QString err = reply->errorString();
             qDebug() << err;
             QString contents = QString::fromUtf8(reply->readAll());
-            qDebug() << contents;
+            if (err=="Host deepnude.to not found"){
+                QMessageBox::warning(this, "Internet connection lost.", "Please check your connection and retry.");
+                exit(0);
+            }
+            else if (err=="Socket operation timed out") {
+                QMessageBox::warning(this, "Timeout", "Server might be banned in your country, use VPN to access.");
+                exit(0);
+            }
         }
         reply->deleteLater();
     });
-    ui->tokenvLabel->setNum(token_validation);
+    if (token_validation == true){
+        ui->tokenvLabel->setText("True");
+    }
+    else{
+        ui->tokenvLabel->setText("False");
+    }
 }
 
 void MainWindow::uploadimg()
@@ -194,13 +223,14 @@ void MainWindow::uploadimg()
     request.setRawHeader("Cookie", "userid="+QByteArray::fromStdString(session_id) +
                          ";identifier=" + QByteArray::fromStdString(session_id));
     request.setRawHeader("TE", "Trailers");
-
+    ui->uploadLabel->setText("Uploading Image...");
     QNetworkReply *reply = mgr->put(request, blob);
     QObject::connect(reply, &QNetworkReply::finished, [=](){
         if(reply->error() == QNetworkReply::NoError){
             status_code = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
             if(status_code==200 and token_validation){
-                ui->getimgButton->setDisabled(false);
+                ui->uploadLabel->setText("Uploading Successful.");
+                ui->getimgButton->setHidden(false);
             }
             else {
                 return;
@@ -219,14 +249,6 @@ void MainWindow::uploadimg()
 
 void MainWindow::on_getimgButton_clicked()
 {
-    //qDebug() << "Sleep 20";
-    for(int i=0; i<=20; i++){
-        qDebug() << i;
-        ui->getimgButton->setText(QString(i));
-        QThread::sleep(1);
-    }
-    ui->getimgButton->setText("Get image");
-
     QNetworkAccessManager *mgr = new QNetworkAccessManager(this);
     const QUrl url(QString::fromStdString(BASE_PREFIX + urls.get_im_prefix + image_id + urls.get_im_suffix));
     QNetworkRequest request(url);
@@ -242,6 +264,8 @@ void MainWindow::on_getimgButton_clicked()
                          ";identifier=" + QByteArray::fromStdString(session_id));
     request.setRawHeader("TE", "Trailers");
 
+    ui->uploadLabel->setText("Downloading Image. Wait 30 seconds.");
+
     QNetworkReply *reply = mgr->get(request);
     QObject::connect(reply, &QNetworkReply::finished, [=](){
         if(reply->error() == QNetworkReply::NoError){
@@ -251,19 +275,19 @@ void MainWindow::on_getimgButton_clicked()
             if (valid_img){
                 image = image.scaledToWidth(ui->imgHolder->width(), Qt::SmoothTransformation);
                 ui->imgHolder->setPixmap(QPixmap::fromImage(image));
-                ui->getimgButton->setEnabled(true);
+                ui->saveimgButton->setHidden(false);
+                ui->selectButton->setDisabled(false);
             }
             qDebug() << status_code;
         }
         else{
             QString err = reply->errorString();
-            qDebug() << err;
-            QString contents = QString::fromUtf8(reply->readAll());
-            qDebug() << contents;
+            if(err=="Connection closed"){
+                QMessageBox::warning(this, "Warning", err);
+            }
         }
         reply->deleteLater();
     });
-
 }
 
 void MainWindow::on_saveimgButton_clicked()
